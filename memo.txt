@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.prod.js"></script>
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="canvas-container" style="width: 100%;margin: 0 auto;">
+            <canvas ref="canvas"></canvas>
+        </div>
+        <div class="text-center pt-3">
+        <!--現在の処理状態をユーザーに伝える領域-->
+            <div v-if="status=='loaded'">
+                この画像で計算します
+                <button class="start-reading" @click="runOcr">
+                計算開始
+                </button>
+                <button class="stop-reading" @click="back">
+                キャンセル
+                </button>
+            </div>
+            <div v-if="status=='reading'">
+            読み取り中です...
+            </div>
+        </div>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    canvas:null,
+                    context:null,
+                    dataUrl:'',
+                    status:'none'
+                }
+            },
+            methods:{}
+        })
+    </script>
+</body>
+</html>
